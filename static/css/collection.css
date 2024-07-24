@@ -1,0 +1,26 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    
+}
+
+.card-img-top {
+    height: 250px; /* Adjust this value as needed */
+    object-fit: cover;
+    border-bottom: 1px solid rgb(138, 136, 134);
+}
+
+.card a {
+    text-decoration: none;
+     /* Ensure the link inherits the color from the parent */
+}
+
+.card a:hover {
+    text-decoration: none;
+   /* Ensure the link inherits the color from the parent on hover */
+}
+.card-img-top {
+    margin-top: 5px; /* Adjust the value as needed */
+}
