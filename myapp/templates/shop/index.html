@@ -16,7 +16,7 @@
                     <hr style="border-color:white">
                     {% include 'shop/INC/message.html' %}
                 </div>
-                    {%for item in products %}
+                    {%for item in page_obj %}
                     <div class="col-md-4 col-lg-3 mb-3 d-flex align-items-stretch" >
                         <div class="card my-3 w-100 d-flex flex-column" >
                             <img src="{{item.product_image.url}}" class="card-img-top" alt="product_image" style="object-fit: cover; height: 350px; margin-top:5px;">
@@ -33,6 +33,39 @@
                         </div>
                     </div>
                     {%endfor%}
+                    <div class="col-12 my-3">
+                        {% if page_obj.has_other_pages %}
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1" aria-label="First">
+                                        <span aria-hidden="true">&laquo; first</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                                        <span aria-hidden="true">previous</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                <li class="page-item"><span class="page-link">Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}.</span></li>
+                                {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                                        <span aria-hidden="true">next</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{page_obj.paginator.num_pages}}" aria-label="Last">
+                                        <span aria-hidden="true">last &raquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        {% endif %}
+                    </div>
             </div>
         </div>
     {% endblock content %}

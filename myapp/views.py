@@ -5,10 +5,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 import json
 from django.http import JsonResponse
+from django.core.paginator import Paginator 
 # Create your views here.
 def  home(request):
     products=product.objects.filter(trending=1)
-    return render(request,'shop/index.html',{"products":products})
+    paginator=Paginator(products,4)
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
+    return render(request,'shop/index.html',{'page_obj':page_obj})
 
 def add_to_cart(request):
     if request.headers.get('x-requested-with')=='XMLHttpRequest':
